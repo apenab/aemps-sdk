@@ -8,14 +8,16 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc -b"
+    "build": "tsc -b",
+    "lint": "echo \"no lint configured\"",
+    "test": "vitest"
   },
   "engines": {
     "node": ">=18"
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.10.6",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^4.0.13"
   }
 }

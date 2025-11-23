@@ -1,4 +1,4 @@
-# @apenab/aemps-sdk
+# AEMPS-SDK
 
 TypeScript SDK for the **AEMPS CIMA REST API** – Spanish medicines data.
 
@@ -37,6 +37,48 @@ Example pattern:
 
 ---
 
+## SDK quickstart
+
+```ts
+import { CimaClient } from "aemps-sdk";
+
+const client = new CimaClient();
+
+async function run() {
+  const result = await client.medicamentos.searchMedicamentos({
+    nombre: "ibuprofeno",
+    pagina: 1,
+  });
+  console.log(result);
+}
+
+run().catch(console.error);
+```
+
+---
+
+## CLI quickstart
+
+Build first:
+
+```bash
+pnpm --filter aemps-cli build
+```
+
+Search medicines (uses `searchMedicamentos`):
+
+```bash
+pnpm --filter aemps-cli run cli medicamentos --nombre ibuprofeno --pagina 1
+```
+
+Optional: pass a different base URL
+
+```bash
+pnpm --filter aemps-cli run cli -- --base-url https://cima.aemps.es/cima/rest medicamentos --nombre ibuprofeno
+```
+
+---
+
 ## Method status legend
 
 We track each method with an icon:
@@ -54,7 +96,7 @@ You can replace the icons as the implementation progresses.
 
 | Status | Method                                 | Endpoint                                 | Description                                                                        |
 | ------ | -------------------------------------- | ---------------------------------------- | ---------------------------------------------------------------------------------- |
-| 🔧     | `searchMedicamentos(conditions)`       | `GET /medicamentos?{condiciones}`        | Search `Medicamentos` using filters such as `nombre`, `cn`, `practiv`, `atc`, etc. |
+| ✅     | `searchMedicamentos(conditions)`       | `GET /medicamentos?{condiciones}`        | Search `Medicamentos` using filters such as `nombre`, `cn`, `practiv`, `atc`, etc. |
 | 🔧     | `getMedicamentoByNregistro(nregistro)` | `GET /medicamento?nregistro={nregistro}` | Get a single `Medicamento` by its registration number.                             |
 | 🔧     | `getMedicamentoByCN(cn)`               | `GET /medicamento?cn={cn}`               | Get a single `Medicamento` by Código Nacional.                                     |
 | 🔧     | `searchInFichaTecnica(filters)`        | `POST /buscarEnFichaTecnica`             | Search inside the SmPC (“Ficha Técnica”) using structured filters.                 |
@@ -157,10 +199,10 @@ Later you can add more specialised helpers if it makes sense in real usage, e.g.
 
 **Changes over time in medicines (alta, baja, modificaciones).**
 
-| Status | Method                           | Endpoint                             | Description                                                                                    |
-| ------ | -------------------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------- |
-| 🔧     | `getRegistroCambios(conditions)` | `GET /registroCambios?{condiciones}` | List change events over a period or matching certain filters (e.g. from a given date onwards). |
-| 🔧     | `postRegistroCambios(body)`      | `POST /registroCambios?{condiciones}` | Alternative POST form supported by the API (same filters as GET). |
+| Status | Method                           | Endpoint                              | Description                                                                                    |
+| ------ | -------------------------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| 🔧     | `getRegistroCambios(conditions)` | `GET /registroCambios?{condiciones}`  | List change events over a period or matching certain filters (e.g. from a given date onwards). |
+| 🔧     | `postRegistroCambios(body)`      | `POST /registroCambios?{condiciones}` | Alternative POST form supported by the API (same filters as GET).                              |
 
 ---
 
