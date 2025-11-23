@@ -86,6 +86,8 @@ We track each method with an icon:
 - ✅ **Done** – implemented and tested.
 - 🔧 **WIP / Planned** – work in progress or not started yet.
 
+- 🤖 **AI / MCP critical** – methods that are important to expose for Model Context Protocol (MCP) and AI assistants. These should be available, consistently typed and return JSON-friendly payloads to be consumable by LLMs and other AI tooling.
+
 You can replace the icons as the implementation progresses.
 
 ---
@@ -96,8 +98,8 @@ You can replace the icons as the implementation progresses.
 
 | Status | Method                                 | Endpoint                                 | Description                                                                        |
 | ------ | -------------------------------------- | ---------------------------------------- | ---------------------------------------------------------------------------------- |
-| ✅     | `searchMedicamentos(conditions)`       | `GET /medicamentos?{condiciones}`        | Search `Medicamentos` using filters such as `nombre`, `cn`, `practiv`, `atc`, etc. |
-| ✅     | `getMedicamentoByNregistro(nregistro)` | `GET /medicamento?nregistro={nregistro}` | Get a single `Medicamento` by its registration number.                             |
+| ✅ 🤖  | `searchMedicamentos(conditions)`       | `GET /medicamentos?{condiciones}`        | Search `Medicamentos` using filters such as `nombre`, `cn`, `practiv`, `atc`, etc. |
+| ✅ 🤖  | `getMedicamentoByNregistro(nregistro)` | `GET /medicamento?nregistro={nregistro}` | Get a single `Medicamento` by its registration number.                             |
 | 🔧     | `getMedicamentoByCN(cn)`               | `GET /medicamento?cn={cn}`               | Get a single `Medicamento` by Código Nacional.                                     |
 | 🔧     | `searchInFichaTecnica(filters)`        | `POST /buscarEnFichaTecnica`             | Search inside the SmPC (“Ficha Técnica”) using structured filters.                 |
 
@@ -110,7 +112,7 @@ You can replace the icons as the implementation progresses.
 | Status | Method                             | Endpoint                            | Description                                                            |
 | ------ | ---------------------------------- | ----------------------------------- | ---------------------------------------------------------------------- |
 | 🔧     | `searchPresentaciones(conditions)` | `GET /presentaciones?{condiciones}` | List `Presentacion` objects filtered by CN, `nregistro`, `forma`, etc. |
-| 🔧     | `getPresentacionByCN(cn)`          | `GET /presentacion/{codNacional}`   | Get one `Presentacion` by Código Nacional.                             |
+| 🔧 ⭐  | `getPresentacionByCN(cn)`          | `GET /presentacion/{codNacional}`   | Get one `Presentacion` by Código Nacional.                             |
 
 ---
 
@@ -120,8 +122,8 @@ You can replace the icons as the implementation progresses.
 
 | Status | Method                                 | Endpoint                         | Description                                                             |
 | ------ | -------------------------------------- | -------------------------------- | ----------------------------------------------------------------------- |
-| 🔧     | `listProblemasSuministro(conditions?)` | `GET /psuministro?{condiciones}` | List current supply problems, optionally filtered (e.g. by date, type). |
-| ✅     | `getProblemasSuministroByCN(cn)`       | `GET /psuministro/{codNacional}` | Get supply problem information for a specific Código Nacional.          |
+| ✅     | `listProblemasSuministro(conditions?)` | `GET /psuministro?{condiciones}` | List current supply problems, optionally filtered (e.g. by date, type). |
+| ✅ 🤖  | `getProblemasSuministroByCN(cn)`       | `GET /psuministro/{codNacional}` | Get supply problem information for a specific Código Nacional.          |
 
 ---
 
@@ -141,7 +143,7 @@ You can replace the icons as the implementation progresses.
 
 | Status | Method                                    | Endpoint                    | Description                                                                         |
 | ------ | ----------------------------------------- | --------------------------- | ----------------------------------------------------------------------------------- |
-| 🔧     | `getNotasSeguridadByNregistro(nregistro)` | `GET /notas/{nregistro}` \* | Retrieve safety notes for a given `nregistro`.                                      |
+| 🔧 ⭐  | `getNotasSeguridadByNregistro(nregistro)` | `GET /notas/{nregistro}` \* | Retrieve safety notes for a given `nregistro`.                                      |
 | 🔧     | `getNotasSeguridad(options)`              | `GET /notas?{condiciones}`  | Generic access to safety notes using query parameters (if you decide to expose it). |
 
 > \* Depending on the final mapping, the SDK may internally use `GET /notas?nregistro={nregistro}` but expose a single ergonomic method.
@@ -154,7 +156,7 @@ You can replace the icons as the implementation progresses.
 
 | Status | Method                                         | Endpoint                        | Description                                                    |
 | ------ | ---------------------------------------------- | ------------------------------- | -------------------------------------------------------------- |
-| 🔧     | `getMaterialesSeguridadByNregistro(nregistro)` | `GET /materiales/{nregistro}`   | Get safety materials for a given `nregistro`.                  |
+| 🔧 ⭐  | `getMaterialesSeguridadByNregistro(nregistro)` | `GET /materiales/{nregistro}`   | Get safety materials for a given `nregistro`.                  |
 | 🔧     | `getMaterialesSeguridad(options)`              | `GET /materiales?{condiciones}` | Generic access via query params (optional as a public method). |
 
 ---
@@ -166,7 +168,7 @@ You can replace the icons as the implementation progresses.
 | Status | Method                                           | Endpoint                                               | Description                                                                                                |
 | ------ | ------------------------------------------------ | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
 | 🔧     | `getDocSegmentadoSecciones(tipoDoc, conditions)` | `GET /docSegmentado/secciones/{tipoDoc}?{condiciones}` | List sections available for a given document type (`tipoDoc`) and `nregistro`.                             |
-| 🔧     | `getDocSegmentadoContenido(tipoDoc, conditions)` | `GET /docSegmentado/contenido/{tipoDoc}?{condiciones}` | Get the segmented content (JSON) for a specific `tipoDoc` and `nregistro`, optionally filtered by section. |
+| 🔧 🤖  | `getDocSegmentadoContenido(tipoDoc, conditions)` | `GET /docSegmentado/contenido/{tipoDoc}?{condiciones}` | Get the segmented content (JSON) for a specific `tipoDoc` and `nregistro`, optionally filtered by section. |
 
 > For `tipoDoc` you can model an internal enum/union, e.g. `1 \| 2` → `1` = Ficha Técnica, `2` = Prospecto (or similar, aligned with the docs).
 
@@ -216,6 +218,24 @@ Once methods are implemented, the public client is expected to look conceptually
   - `getMedicamentoByNregistro(nregistro)`
   - `getMedicamentoByCN(cn)`
   - `searchInFichaTecnica(filters)`
+
+  > 🤖 AI / MCP — REQUIRED (MUST):
+  >
+  > - These methods are essential for Model Context Protocol (MCP) consumption by AI assistants and LLMs. Make sure they are exposed, well-typed and return JSON friendly payloads.
+  > - Español: Estos métodos son imprescindibles para integraciones MCP/AI — deben estar expuestos, tipados y devolver payloads JSON legibles por modelos.
+  >
+  > MUST:
+  >
+  > - `searchMedicamentos(conditions)`
+  > - `getMedicamentoByNregistro(nregistro)`
+  > - `getProblemasSuministroByCN(cn)`
+  > - `getDocSegmentadoContenido(tipoDoc, conditions)` (prefer JSON)
+  >
+  > STRONGLY RECOMMENDED:
+  >
+  > - `getPresentacionByCN(cn)` or `searchPresentaciones(conditions)`
+  > - `getNotasSeguridadByNregistro(nregistro)`
+  > - `getMaterialesSeguridadByNregistro(nregistro)`
 
 - **Presentaciones**
 
