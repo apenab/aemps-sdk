@@ -1,6 +1,9 @@
 import { HttpClient } from "../core/httpClient";
 import { RequestOptions } from "../types/common";
-import { SearchMedicamentosParams } from "../types/medicamentos";
+import {
+  GetMedicamentoByNregistroParams,
+  SearchMedicamentosParams
+} from "../types/medicamentos";
 
 export class MedicamentosApi {
   constructor(private readonly http: HttpClient) {}
@@ -14,5 +17,17 @@ export class MedicamentosApi {
     options: RequestOptions = {}
   ): Promise<T> {
     return this.http.get<T>("medicamentos", params, options);
+  }
+
+  /**
+   * GET /medicamento?nregistro={nregistro}
+   * Fetch a single medicine by its registration number.
+   */
+  async getMedicamentoByNregistro<T = unknown>(
+    nregistro: string | number,
+    options: RequestOptions = {}
+  ): Promise<T> {
+    const params: GetMedicamentoByNregistroParams = { nregistro };
+    return this.http.get<T>("medicamento", params, options);
   }
 }

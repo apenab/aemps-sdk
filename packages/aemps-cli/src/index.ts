@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { Command } from "commander";
+import { registerMedicamentoCommand } from "./commands/medicamento";
 import { registerMedicamentosCommand } from "./commands/medicamentos";
 
 const program = new Command();
@@ -11,6 +12,7 @@ program
   .option("--base-url <url>", "Override CIMA base URL", "https://cima.aemps.es/cima/rest");
 
 registerMedicamentosCommand(program);
+registerMedicamentoCommand(program);
 
 // pnpm run forwards a leading "--" as a literal arg; strip it so commander
 // keeps parsing commands normally.

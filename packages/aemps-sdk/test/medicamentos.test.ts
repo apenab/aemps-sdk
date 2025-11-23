@@ -38,6 +38,23 @@ describe("MedicamentosApi.searchMedicamentos", () => {
   });
 });
 
+describe("MedicamentosApi.getMedicamentoByNregistro", () => {
+  it("builds GET /medicamento?nregistro={id}", async () => {
+    const fetchMock = vi.fn<typeof fetch>(async () => createJsonResponse({ id: "71168" }, 200));
+    const client = new AempsClient({ baseUrl, fetchFn: fetchMock });
+
+    await client.medicamentos.getMedicamentoByNregistro("71168");
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    const [url, init] = fetchMock.mock.calls[0]!;
+    expect(init?.method).toBe("GET");
+
+    const parsed = new URL(toUrlString(url));
+    expect(parsed.pathname).toBe("/api/medicamento");
+    expect(parsed.searchParams.get("nregistro")).toBe("71168");
+  });
+});
+
 function toUrlString(input: Parameters<typeof fetch>[0]): string {
   if (typeof input === "string") return input;
   if (input instanceof URL) return input.toString();

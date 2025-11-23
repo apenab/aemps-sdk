@@ -21,3 +21,7 @@ export type SearchMedicamentosParams = QueryParams & {
   receta?: 0 | 1 | boolean;
   pagina?: number;
 };
+
+export interface GetMedicamentoByNregistroParams extends QueryParams {
+  nregistro: string | number;
+}

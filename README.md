@@ -97,7 +97,7 @@ You can replace the icons as the implementation progresses.
 | Status | Method                                 | Endpoint                                 | Description                                                                        |
 | ------ | -------------------------------------- | ---------------------------------------- | ---------------------------------------------------------------------------------- |
 | ✅     | `searchMedicamentos(conditions)`       | `GET /medicamentos?{condiciones}`        | Search `Medicamentos` using filters such as `nombre`, `cn`, `practiv`, `atc`, etc. |
-| 🔧     | `getMedicamentoByNregistro(nregistro)` | `GET /medicamento?nregistro={nregistro}` | Get a single `Medicamento` by its registration number.                             |
+| ✅     | `getMedicamentoByNregistro(nregistro)` | `GET /medicamento?nregistro={nregistro}` | Get a single `Medicamento` by its registration number.                             |
 | 🔧     | `getMedicamentoByCN(cn)`               | `GET /medicamento?cn={cn}`               | Get a single `Medicamento` by Código Nacional.                                     |
 | 🔧     | `searchInFichaTecnica(filters)`        | `POST /buscarEnFichaTecnica`             | Search inside the SmPC (“Ficha Técnica”) using structured filters.                 |
 

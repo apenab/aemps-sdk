@@ -1,6 +1,7 @@
 import { Command } from "commander";
 
-export function getBaseUrl(program: Command): string | undefined {
+export function getBaseUrl(program?: Command | null): string | undefined {
+  if (!program) return undefined;
   return program.opts<{ baseUrl?: string }>().baseUrl;
 }
 
