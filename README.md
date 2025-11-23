@@ -121,7 +121,7 @@ You can replace the icons as the implementation progresses.
 | Status | Method                                 | Endpoint                         | Description                                                             |
 | ------ | -------------------------------------- | -------------------------------- | ----------------------------------------------------------------------- |
 | 🔧     | `listProblemasSuministro(conditions?)` | `GET /psuministro?{condiciones}` | List current supply problems, optionally filtered (e.g. by date, type). |
-| 🔧     | `getProblemasSuministroByCN(cn)`       | `GET /psuministro/{codNacional}` | Get supply problem information for a specific Código Nacional.          |
+| ✅     | `getProblemasSuministroByCN(cn)`       | `GET /psuministro/{codNacional}` | Get supply problem information for a specific Código Nacional.          |
 
 ---
 

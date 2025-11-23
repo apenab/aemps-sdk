@@ -2,6 +2,8 @@
 import { Command } from "commander";
 import { registerMedicamentoCommand } from "./commands/medicamento";
 import { registerMedicamentosCommand } from "./commands/medicamentos";
+import { registerPsuministroCommand } from "./commands/psuministro";
+import { registerPsuministrosCommand } from "./commands/psuministros";
 
 const program = new Command();
 
@@ -13,6 +15,8 @@ program
 
 registerMedicamentosCommand(program);
 registerMedicamentoCommand(program);
+registerPsuministroCommand(program);
+registerPsuministrosCommand(program);
 
 // pnpm run forwards a leading "--" as a literal arg; strip it so commander
 // keeps parsing commands normally.
