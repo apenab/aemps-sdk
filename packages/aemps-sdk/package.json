@@ -1,0 +1,21 @@
+{
+  "name": "aemps-sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for the CIMA (AEMPS) REST API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "typescript": "^5.3.3"
+  }
+}
