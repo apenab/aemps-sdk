@@ -6,7 +6,8 @@
     "build": "pnpm -r build",
     "lint": "pnpm -r lint",
     "test": "pnpm -r test",
-    "changeset": "changeset"
+    "changeset": "changeset",
+    "publish:sdk": "pnpm --filter aemps-sdk publish --access public"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",
