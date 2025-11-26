@@ -5,6 +5,7 @@
   "fixed": [],
   "linked": [],
   "access": "public",
+  "packages": ["packages/*"],
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": ["aemps-cli"]
