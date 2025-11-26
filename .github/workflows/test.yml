@@ -29,7 +29,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build all packages
-        run: pnpm -r build
+        run: pnpm build
 
       - name: Test SDK
-        run: pnpm --filter aemps-sdk test
+        run: pnpm test
