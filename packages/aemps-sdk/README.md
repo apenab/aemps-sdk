@@ -39,6 +39,16 @@ Example pattern:
 
 ## SDK quickstart
 
+Install the SDK:
+
+```bash
+npm install aemps-sdk
+# or
+yarn add aemps-sdk
+# or
+pnpm add aemps-sdk
+```
+
 ```ts
 import { CimaClient } from "aemps-sdk";
 
